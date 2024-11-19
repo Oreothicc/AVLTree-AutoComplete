@@ -1,4 +1,4 @@
-# AVL TREES IMPLEMENTATION
+# AVL TREE AUTOCOMPLETE IMPLEMENTATION
 
 ## BST and its time complexity
 Binary Search Trees or BSTs are a data structure used to store data items following a particular set of rules. A tree is a non-linear data structure that is used to store and represent data in a way that is easy to navigate and search. It is called non-linear because instead of being stored in a contiguous manner like an array or a list, there is a defined hierarchy.
@@ -10,9 +10,14 @@ The first node is the "ROOT" and it points to its children. If a tree has only 2
 ![BST](https://github.com/user-attachments/assets/7460cd99-9bd7-4103-add8-55bdcdc4d1d0)
 
 This is done by checking for the conditions above every time a node is inserted into the tree- if it is greater than the root, it is inserted into the right side or else the left side. Recursion is used to simplify this process:
-` public BSTNode insert(BSTNode root, int x){
-        if(root==null){return new BSTNode(x);}
-        if(x>root.data){
+
+
+``` 
+public BSTNode insert(BSTNode root, int x){
+        if(root==null)
+        {return new BSTNode(x);}
+        if(x>root.data)
+        {
             root.right=insert(root.right,x);
         }
         else{
@@ -20,7 +25,7 @@ This is done by checking for the conditions above every time a node is inserted 
         }
         return root;
     }
-`
+```
 
 ### Time Complexity:
 On average the insertion, deletion, and search process of BST are O(logn)
@@ -32,31 +37,37 @@ This can be seen for a tree like-  1,2,3,4 which is entirely right skewed.
 
 Here because the tree is completely unbalanced, the time complexity dissolves into O(n). This can be combatted by always balancing the tree or by creating some sort of tree data structure that is self-balancing. If we are able to do this, we can always have a time complexity of O(logn) for all searches.
 
-## avl tree: introduction, detection of imbalance
+## AVL trees: introduction and imbalances
 Considering this need, AVL trees were created. AVL trees constantly balance the tree and they do this by calculating a balance factor.
 
 ### Balance factor = height(left sub-tree)- height(right sub-tree)
 
 If BF is -1,0,1 it is balanced or else the tree must be balanced via rotations.
+
+
 ![insertion-in-avl-trees-1-1648705027](https://github.com/user-attachments/assets/6da15831-126a-45e1-8a12-cfc14c5c387f)
 
 ## Subcases of imbalance (LL,LR,RL,RR)
 To check imbalances, the tree is rotated once it BF is -2 or 2 which shows left or right imbalance. 
 This is an LL imbalanced tree:
+
 ![LL_Rotations](https://github.com/user-attachments/assets/d55e6f11-2aef-41d9-9b0f-6111d40cffda)
 
 This is an LR imbalanced tree:
+
 ![LR_Rotation](https://github.com/user-attachments/assets/e7875e6c-a312-47d9-b704-6c619d9cd2b0)
 
 This is a RR imbalance tree:
+
 ![RR_Rotations](https://github.com/user-attachments/assets/6b40239c-8d57-49d6-8c62-f1c0d7033cb9)
 
 This is a RL imbalance tree:
+
 ![RL_Rotations](https://github.com/user-attachments/assets/1adc2102-6153-4e09-8790-1eec3dc30c5b)
 
 The different cases of RR, LL, RL, LR can be checked like this:
 
-` if(getBF(root)==2){
+``` if(getBF(root)==2){
             if(getBF(root.left)==1){
                 System.out.println("LL");
             }
@@ -73,9 +84,9 @@ The different cases of RR, LL, RL, LR can be checked like this:
    public int getBF(BSTNode root){
         return ((root.left==null?0:root.left.h)-(root.right==null?0:root.right.h));
     }
-`
+```
 
-## how to balance each case
+## How to Balance Each Case
 
 Left rotate:
 When left rotation is done the tree is right skewed so the new root will be the right child of the previous root. It is useful to imagine subtrees of each node to simplify this process.
@@ -91,8 +102,7 @@ Now if this is left rotated- 2 becomes the new root such that:
 1: left subtree=t1, right subtree=t2
 3: left subtree=t3, right subtree=t4
 
-
-    public BSTNode leftRotate(BSTNode root){
+```  public BSTNode leftRotate(BSTNode root){
           BSTNode newroot=root.right;
           BSTNode temp=newroot.left;
           root.right=temp;
@@ -101,14 +111,13 @@ Now if this is left rotated- 2 becomes the new root such that:
           updateHeight(newroot);
           return newroot;
       }
-  `
+  ```
 
 
 Right rotate:
 This similar process is done for right rotation. 
 
-`
-
+```
     public BSTNode rightRotate(BSTNode root){
         BSTNode newroot=root.left;
         BSTNode temp=newroot.right;
@@ -119,7 +128,7 @@ This similar process is done for right rotation.
         return newroot;
 
     }
-  `
+  ```
 
 For LR or RL:
 LR: left rotate + right rotate
