@@ -2,14 +2,20 @@ import java.util.*;
 import java.io.PrintStream;
 
 public class Main {
-    public static void main(String args[]){
+public static void main(String args[]){
         Scanner sc=new Scanner(System.in);
         Solution s=new Solution();
         BSTVisualizer visualizer = new BSTVisualizer();
         BSTNode root=null;
-        while(sc.hasNextInt()){
-            root=s.insert(root,sc.nextInt());
+        while (sc.hasNextInt()) {
+            int value = sc.nextInt();
+            if (value == -1) break; 
+            root = s.insert(root, value);
             visualizer.printBST(root);
+        }
+        System.out.println("ENTER TO SEARCH");
+        while(sc.hasNextInt()){
+            System.out.println(s.search(root,sc.nextInt()));
         }
         System.out.println("DONE");
     }
@@ -95,5 +101,15 @@ class Solution{
         return newroot;
 
     }
+
+     public boolean search(BSTNode root, int val){
+        if(root==null){return false;}
+        if(root.data==val){return true;}
+        if(root.data>val){return search(root.left,val);}
+        else{
+            return search(root.right,val);
+        }
+    }
+
 
 }
