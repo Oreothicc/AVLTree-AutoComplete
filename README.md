@@ -1,5 +1,10 @@
 # AVL TREE AUTOCOMPLETE IMPLEMENTATION
 
+## About The Project
+AVL AutoComplete -Search Optimization Using AVL Trees | Java
+•Implemented an AVL tree data structure from scratch with search operations within O(logn) time complexity with rotations for LL, RR, LR, RL imbalances and worst case time complexity of O(prefix length+logn).
+•Employed object oriented principles, populated the AVL tree with a dataset of over 50+ product names to simulate a real-world search engine scenario, tested and validated implementation.
+
 ## BST and its time complexity
 Binary Search Trees or BSTs are a data structure used to store data items following a particular set of rules. A tree is a non-linear data structure that is used to store and represent data in a way that is easy to navigate and search. It is called non-linear because instead of being stored in a contiguous manner like an array or a list, there is a defined hierarchy.
 
